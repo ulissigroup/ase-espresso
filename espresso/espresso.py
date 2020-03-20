@@ -27,7 +27,7 @@ from collections import OrderedDict
 from io import open
 from path import Path
 import logging
-
+import uuid
 import pexpect
 
 from ase.calculators.calculator import FileIOCalculator
@@ -922,7 +922,7 @@ class Espresso(FileIOCalculator, object):
         self.scratch = self.site.make_scratch()
 
         if self.txt is None:
-            self.log = self.localtmp.joinpath('log')
+            self.log = self.localtmp.joinpath('log_') + uuid.uuid4()
         else:
             self.log = self.localtmp.joinpath(self.txt)
 
